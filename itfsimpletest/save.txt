@@ -4,23 +4,23 @@
 
     if (mysqli_connect_errno($conn)) {
         die('Failed to connect to MySQL: ' . mysqli_connect_error());
-};
+    }
 
+    $id = $_POST['id'];
     $x = $_POST['name'];
     $y = $_POST['price'];
     $z = $_POST['discount'];
     $a = $y - ($y * ($z / 100));
-
-    $sql = "INSERT INTO product (Product , Price , Discount , Total) VALUES ('$x', '$y', '$z', '$a')";
+    
+    $sql = "UPDATE product SET Product = '$x', Price = '$y', Discount = '$z', Total = '$a' WHERE ID = '$id'";
 
     if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully"; 
+        echo 'Saved';
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Fail to load";
     }
-    mysqli_close($conn);
 ?>
-<titile>เพิ่มข้อมูล</titile>
-<script>
-    window.location.replace("show.php");
-</script>
+    <title>แก้ไขข้อมูล</title>
+    <script>
+        window.location.replace("show.php");
+    </script>
